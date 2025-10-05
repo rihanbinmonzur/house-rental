@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('property_id')->constrained()->onDelete('cascade');
+            $table->integer('unit_number');
+            $table->string('floor');
+            $table->integer('size');
+            $table->integer('bedrooms');
+            $table->integer('bathrooms');
+            $table->integer('rent_amount');
+            $table->enum('status', ['available', 'occupied', 'maintenance'])->default('available');
+             $table->json('features')->nullable();
+             $table->index(['property_id', 'unit_number']);
             $table->timestamps();
         });
     }
