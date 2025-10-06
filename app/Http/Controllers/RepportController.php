@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\lease;
+use App\Models\repport;
 use Illuminate\Http\Request;
 
-class LeaseController extends Controller
+class RepportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data=lease::all();
-        return view('lease.index',compact('data'));
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class LeaseController extends Controller
      */
     public function create()
     {
-        return view ('lease.create');
+        //
     }
 
     /**
@@ -29,15 +28,13 @@ class LeaseController extends Controller
      */
     public function store(Request $request)
     {
-        $requestda = $request->all();
-        lease::create($requestda);
-        return redirect()->route('lease.index');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(lease $lease)
+    public function show(repport $repport)
     {
         //
     }
@@ -45,24 +42,23 @@ class LeaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(lease $lease)
+    public function edit(repport $repport)
     {
-        return view ('lease.edit',compact('lease'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, lease $lease)
+    public function update(Request $request, repport $repport)
     {
-        $lease->update($request->all());
-        return redirect()->route('lease.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(lease $lease)
+    public function destroy(repport $repport)
     {
         //
     }
