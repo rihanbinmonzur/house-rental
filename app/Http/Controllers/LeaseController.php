@@ -12,7 +12,8 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        //
+        $data=lease::all();
+        return view('lease.index',compact('data'));
     }
 
     /**
@@ -20,7 +21,7 @@ class LeaseController extends Controller
      */
     public function create()
     {
-        //
+        return view ('lease.create');
     }
 
     /**
@@ -28,7 +29,9 @@ class LeaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestda = $request->all();
+        lease::create($requestda);
+        return redirect()->route('lease.index');
     }
 
     /**

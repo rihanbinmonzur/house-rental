@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('form_user_id')->contrained('users');
-             $table->foreignId('to_user_id')->constrained('users');
-            $table->foreignId('property_id')->constrained('property');
+            $table->bigInteger('form_user_id');
+             $table->bigInteger('to_user_id');
+            $table->bigInteger('property_id');
             $table->text('body');
             $table->json('attachments')->nullable();
             $table->timestamp('read_at')->nullable();

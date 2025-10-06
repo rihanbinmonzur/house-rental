@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\PropertyController;
+use App\Http\controllers\leaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 route::resource('property',PropertyController::class);
+
+
+
+route::resource('lease',LeaseController::class);

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('leases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
-            $table->foreignId('tenant_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('landlor_id')->constrained('users')->onDelete('cascade');
+            $table->bigInteger('unit_id')->nullable();
+            $table->bigInteger('tenant_id')->nullable();
+            $table->bigInteger('landlord_id')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->decimal('security_deposite',10, 2 )->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('rent_due_day')->nullable();
             $table->decimal('late_fee',10,2)->nullable();
             $table->enum('status',['active','ended','cancelled','pending']);
-            $table->text('turms')->nullable();
+            $table->text('terms')->nullable();
             $table->timestamps();
         });
     }
