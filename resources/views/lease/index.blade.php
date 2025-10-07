@@ -29,6 +29,15 @@
         <td>{{$d->late_fee}}</td>
         <td>{{$d->status}}</td>
         <td>{{$d->terms}}</td>
+        <td><a href="{{route('lease.edit',$d->id)}}">edit</a>
+
+        <form action="'{{route('lease.destroy',$d->id)}}'" method="post" >
+            @csrf 
+            @method('delete')
+             <button type="submit" >delete</button> 
+        </form>
+    
+            </td>
 
 
 

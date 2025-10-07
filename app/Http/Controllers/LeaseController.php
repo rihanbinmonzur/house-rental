@@ -55,8 +55,8 @@ class LeaseController extends Controller
      */
     public function update(Request $request, lease $lease)
     {
-        $lease->update($request->all());
-        return redirect()->route('lease.index');
+        $lease -> update($request->all());
+        return redirect()->route('lease.index'); 
     }
 
     /**
@@ -64,6 +64,7 @@ class LeaseController extends Controller
      */
     public function destroy(lease $lease)
     {
-        //
+        $lease->delete();
+        return redirect()->route('lease.index');
     }
 }

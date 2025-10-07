@@ -1,4 +1,3 @@
-
 @extends('layouts.app_property')
 @section('pageTitle',"index")
 
@@ -34,11 +33,11 @@
                                 <div class="mb-3">
                                     <label for="propertyType" class="form-label">Property Type</label>
                                     <select name="property_type" class="form-select" id="propertyType">
-                                        <option value="apartment">Apartment Building</option>
-                                        <option value="house">Single Family Home</option>
-                                        <option value="townhouse">Townhouse</option>
-                                        <option value="condo">Condominium</option>
-                                        <option value="commercial">Commercial</option>
+                                        <option value="apartment" {{$property->propert_type ==apartment ? 'selected' : ''}} >Apartment Building</option>
+                                        <option value="house" {{$property->property_type==house ? 'selected' :''}} >Single Family Home</option>
+                                        <option value="townhouse" {{$property->property_type==townhouse ? 'selected' : ''}}>Townhouse</option>
+                                        <option value="condo" {{$property->property_type==condo ? 'selected' :''}}>Condominium</option>
+                                        <option value="commercial" {{$property->property_type==commercial ? 'selected' : ''}}>Commercial</option>
                                     </select>
                                 </div>
                             </div>
@@ -46,20 +45,20 @@
 
                         <div class="mb-3">
                             <label for="propertyAddress" class="form-label">Address *</label>
-                            <textarea class="form-control" name="address" id="propertyAddress" rows="2" placeholder="Full property address" required></textarea>
+                            <textarea class="form-control" value="{{$property->address }}" name="address" id="propertyAddress" rows="2" placeholder="Full property address" required></textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="totalUnits" class="form-label">Total Units</label>
-                                    <input type="number"  name="total_units" class="form-control" id="totalUnits" value="1" min="1">
+                                    <input type="number"  name="total_units" class="form-control" id="totalUnits" value="1" min="1" value="{{$property->total_units}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="baseRent" class="form-label">Base Rent ($)</label>
-                                    <input type="number" name="base_rent" class="form-control" id="baseRent" placeholder="0.00" step="0.01">
+                                    <input type="number" name="base_rent"  class="form-control" id="baseRent" placeholder="0.00" step="0.01">
                                 </div>
                             </div>
                             <div class="col-md-4">

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role',['admin','landlord','tenant']->default('tenant'));
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('profile_photo');
             $table->enum('status',['active','suspended','deleted'])->default('active');

@@ -43,7 +43,7 @@ class PropertyController extends Controller
          // checkbox feature JSON এ convert
         $requestData['property_feature'] = json_encode($request->property_feature ?? []);
        
-            // সব ফিল্ড save
+            // সব ফিল্ড save like insert into1
         Property::create($requestData);
        return redirect()->route('property.index');
     }

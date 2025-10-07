@@ -321,11 +321,11 @@
                                                     <label for="unit_id" class="form-label required">Property Unit</label>
                                                     <select class="form-select" id="unit_id" name="unit_id" required>
                                                         <option value="">Select a unit</option>
-                                                        <option value="1" {{$less->unit_id ==1 ? 'selected' : ''}}  >Unit 1A - 123 Main St</option>
-                                                        <option value="2" {{$less->unit_id ==2 ? 'selected' : ''}}>Unit 2B - 123 Main St</option>
-                                                        <option value="3" {{$less->unit_id ==3 ? 'selected' : ''}}>Unit 3C - 456 Oak Ave</option>
-                                                        <option value="4" {{$less->unit_id ==4 ? 'selected':''}}>Unit 4D - 456 Oak Ave</option>
-                                                        <option value="5" {{$less->unit_id ==5 ? 'selected': ''}} >Unit 5E - 789 Pine Rd</option>
+                                                        <option value="1" {{$lease->unit_id ==1 ? 'selected' : ''}}  >Unit 1A - 123 Main St</option>
+                                                        <option value="2" {{$lease->unit_id ==2 ? 'selected' : ''}}>Unit 2B - 123 Main St</option>
+                                                        <option value="3" {{$lease->unit_id ==3 ? 'selected' : ''}}>Unit 3C - 456 Oak Ave</option>
+                                                        <option value="4" {{$lease->unit_id ==4 ? 'selected':''}}>Unit 4D - 456 Oak Ave</option>
+                                                        <option value="5" {{$lease->unit_id ==5 ? 'selected': ''}} >Unit 5E - 789 Pine Rd</option>
                                                     </select>
                                                     <div class="form-text">Select the property unit for this lease</div>
                                                 </div>
@@ -333,11 +333,11 @@
                                                     <label for="tenant_id" class="form-label required">Tenant</label>
                                                     <select class="form-select" id="tenant_id" name="tenant_id" required>
                                                         <option value="">Select a tenant</option>
-                                                        <option value="1">John Smith (john@example.com)</option>
-                                                        <option value="2">Emily Johnson (emily@example.com)</option>
-                                                        <option value="3">Michael Brown (michael@example.com)</option>
-                                                        <option value="4">Sarah Williams (sarah@example.com)</option>
-                                                        <option value="5">David Miller (david@example.com)</option>
+                                                        <option value="1" {{$lease->tenant_id==1 ? 'selected' : ''}}>John Smith (john@example.com)</option>
+                                                        <option value="2" {{$lease->tenant_id==2 ? 'selected' : ''}}>Emily Johnson (emily@example.com)</option>
+                                                        <option value="3" {{$lease->tenant_id==3 ? 'selected' : ''}}>Michael Brown (michael@example.com)</option>
+                                                        <option value="4" {{$lease->tenant_id==4 ? 'selected' : ''}}>Sarah Williams (sarah@example.com)</option>
+                                                        <option value="5" {{$lease->tenant_id==5 ? 'selected' : ''}}>David Miller (david@example.com)</option>
                                                     </select>
                                                     <div class="form-text">Select the tenant for this lease</div>
                                                 </div>
@@ -374,11 +374,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="start_date" class="form-label required">Start Date</label>
-                                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{$lease->start_date}}" required>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="end_date" class="form-label required">End Date</label>
-                                                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                                                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{$lease->end_date}}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -391,7 +391,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="rent_amount" class="form-label required">Monthly Rent ($)</label>
-                                                    <input type="number" class="form-control" id="rent_amount" name="rent_amount" min="0" step="0.01" required>
+                                                    <input type="number" class="form-control" id="rent_amount" name="rent_amount" min="0" step="0.01"  value="{{$lease->rent_amount}}" required>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="rent_due_day" class="form-label required">Rent Due Day</label>
