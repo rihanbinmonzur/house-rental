@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('property_id');
             $table->string('path')->nullable();
              $table->string('caption')->nullable();
-            $table->boolean('is_primary')->default(false);
+        
             $table->boolean('is_primary')->default(0);
              $table->bigInteger('uploaded_by');
             $table->timestamps();

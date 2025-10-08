@@ -21,8 +21,6 @@ return new class extends Migration
             $table->text('reason');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('landlord_notes')->nullable();
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->text('landlord_notes')->nullable();
             $table->timestamps();
         });
     }
