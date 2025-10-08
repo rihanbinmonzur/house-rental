@@ -1,0 +1,135 @@
+
+        :root {
+            --primary: #4e73df;
+            --success: #1cc88a;
+            --info: #36b9cc;
+            --warning: #f6c23e;
+            --danger: #e74a3b;
+            --dark: #5a5c69;
+        }
+
+        body {
+            background-color: #f8f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--primary) 0%, #224abe 100%);
+            min-height: 100vh;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            margin: 0.2rem 0;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .sidebar .nav-link:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #fff;
+        }
+
+        .sidebar .nav-link.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #fff;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .stat-card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .card-primary {
+            border-left: 4px solid var(--primary);
+        }
+
+        .card-success {
+            border-left: 4px solid var(--success);
+        }
+
+        .card-info {
+            border-left: 4px solid var(--info);
+        }
+
+        .card-warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .card-danger {
+            border-left: 4px solid var(--danger);
+        }
+
+        .quick-action-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+        }
+
+        .quick-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar {
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        }
+
+        .recent-activity {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 1rem;
+            border-left: 3px solid #e3e6f0;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .activity-item.new {
+            border-left: 3px solid var(--primary);
+        }
+
+        .activity-item.warning {
+            border-left: 3px solid var(--warning);
+        }
+
+        .activity-item.danger {
+            border-left: 3px solid var(--danger);
+        }
+
