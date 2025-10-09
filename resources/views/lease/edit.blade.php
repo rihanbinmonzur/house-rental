@@ -357,7 +357,7 @@
                                                     <label for="status" class="form-label required">Lease Status</label>
                                                     <select class="form-select" id="status" name="status" required>
                                                         <option value="">Select status</option>
-                                                        <option value="active">Active</option>
+                                                        <option value="active"  >Active</option>
                                                         <option value="pending">Pending</option>
                                                         <option value="cancelled">Cancelled</option>
                                                         <option value="ended">Ended</option>
@@ -374,7 +374,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="start_date" class="form-label required">Start Date</label>
-                                                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{$lease->start_date}}" required>
+                                                    <input type="date"  class="form-control" id="start_date" name="start_date" value="{{$lease->start_date}}" required>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="end_date" class="form-label required">End Date</label>
