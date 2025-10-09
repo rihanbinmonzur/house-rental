@@ -11,7 +11,7 @@ class MaintenanceRequestController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {               
+    {
         $data = maintenance_request::all();
         return view('main_req.index', compact('data'));
     }
@@ -44,25 +44,26 @@ class MaintenanceRequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(maintenance_request $maintenance_request)
+    public function edit(maintenance_request $mainreq)
     {
-        return view('main_req.edit', compact('maintenance_request'));
+        return view('main_req.edit', compact('mainreq'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, maintenance_request $maintenance_request)
+    public function update(Request $request, maintenance_request $mainreq)
     {
-        $maintenance_request->update($request->all());
+        $mainreq->update($request->all());
         return redirect()->route('mainreq.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(maintenance_request $maintenance_request)
+    public function destroy(maintenance_request $mainreq)
     {
-        //
+        $mainreq->delete();
+        return redirect()->route('mainreq.index');
     }
 }

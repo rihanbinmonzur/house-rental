@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\PropertyController;
 use App\Http\controllers\leaseController;
 use App\Http\controllers\MaintenanceRequestController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +29,3 @@ route::resource('lease',LeaseController::class);
 route::resource('mainreq',MaintenanceRequestController::class);
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
