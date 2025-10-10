@@ -403,8 +403,8 @@
                         <div class="mb-3">
                             <label for="issueDescription" class="form-label">Detailed Description *</label>
                             <textarea class="form-textarea" id="issueDescription"
-                                placeholder="Please provide a detailed description of the issue, including when it started, how it affects you, and any other relevant information..."
-                                value="{{ $mainreq->description }}" required maxlength="1000"></textarea>
+                                placeholder="Please provide a detailet information..." name="description"
+                                value="{{ $mainreq->description }}" required maxlength="1000" ></textarea>
                             <div class="character-count" id="descriptionCount">0/1000 characters</div>
                             <div class="info-text">Be as specific as possible to help us address the issue quickly</div>
                         </div>
@@ -480,7 +480,7 @@
                             <input type="file" name="image_url" id="photoUpload" multiple accept="image/*"
                                 style="display: none;">
                         </div>
-
+                                 <input type="file" name="image_url" id="photoUpload" multiple accept="image/*>
                         <div class="photo-preview-container" id="photoPreviewContainer">
                             <!-- Photo previews will be added here -->
                         </div>

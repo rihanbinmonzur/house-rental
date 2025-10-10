@@ -28,9 +28,17 @@ class MaintenanceRequestController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        maintenance_request::create($request->all());
-        return redirect()->route('mainreq.store');
+    {   
+        $requestData = $request->all();
+          
+          if($request->hasFIle('image_url')){
+            $fileName = time().'.'.$request->image_url->extension();
+            $request->image_url->move(public_path('uploadsmr'),$fileName);
+            $requestData['image_url'] = $fileName;
+          }
+
+        maintenance_request::create($requestData);
+        return redirect()->route('mainreq.index');
     }
 
     /**
@@ -53,8 +61,19 @@ class MaintenanceRequestController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, maintenance_request $mainreq)
-    {
+    {       
         $mainreq->update($request->all());
+        if($request->hasFile('image_url')){
+
+            if($mainreq->image_url && file_exists(public_path('uploadsmr/'.$mainreq->image_url))){
+                unlink(public_path('uploadsmr/'.$mainreq->image_url));
+            }
+            $fileName = time(). '_'.$request->file('image_url')->getClientOriginalName();
+            $request->file('image_url')->move(public_path('uploadsmr'),$fileName);
+            $mainreq->image_url = $fileName;
+        }
+        $mainreq->save();
+        
         return redirect()->route('mainreq.index');
     }
 

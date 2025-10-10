@@ -334,7 +334,7 @@
 
             <!-- Form Body -->
             <div class="form-body">
-                <form action="{{ route('mainreq.store') }}" method="post">
+                <form action="{{ route('mainreq.store') }}" method="post" enctype="multipart/form-data"  >
                     @csrf
                     <!-- Tenant & Unit Information -->
                     <div class="form-section">
@@ -474,8 +474,14 @@
                             <p class="small text-muted">Supported formats: JPG, PNG, GIF (Max: 5MB per file)</p>
                             <input type="file" id="photoUpload" name="image_url" multiple accept="image/*"
                                 style="display: none;">
+                            <input type="file"  name="image_url" multiple accept="image/*"
+                                style="display: none;">
                         </div>
-
+                                    <div>
+                                        <label for="">photo</label>
+                                         <input type="file"  name="image_url" multiple accept="image/*"
+                                >
+                                    </div>
                         <div class="photo-preview-container" id="photoPreviewContainer">
                             <!-- Photo previews will be added here -->
                         </div>
