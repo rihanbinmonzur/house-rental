@@ -15,12 +15,12 @@
             --danger-color: #e74c3c;
             --light-bg: #f8f9fa;
         }
-        
+
         body {
             background-color: #f5f7fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         .dashboard-header {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
@@ -28,60 +28,60 @@
             margin-bottom: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .stat-card {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
             margin-bottom: 1.5rem;
         }
-        
+
         .stat-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .priority-low {
             border-left: 4px solid #2ecc71;
         }
-        
+
         .priority-medium {
             border-left: 4px solid #f39c12;
         }
-        
+
         .priority-high {
             border-left: 4px solid #e74c3c;
         }
-        
+
         .priority-urgent {
             border-left: 4px solid #9b59b6;
         }
-        
+
         .status-pending {
             background-color: #fff3cd;
             color: #856404;
         }
-        
+
         .status-in_progress {
             background-color: #cce7ff;
             color: #004085;
         }
-        
+
         .status-completed {
             background-color: #d4edda;
             color: #155724;
         }
-        
+
         .status-cancelled {
             background-color: #f8d7da;
             color: #721c24;
         }
-        
+
         .badge-priority {
             padding: 0.4em 0.6em;
             font-size: 0.75em;
             font-weight: 600;
         }
-        
+
         .filter-section {
             background-color: white;
             border-radius: 10px;
@@ -89,25 +89,25 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             margin-bottom: 1.5rem;
         }
-        
+
         .table-container {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
-        
+
         .table thead th {
             background-color: var(--secondary-color);
             color: white;
             border: none;
         }
-        
+
         .action-btn {
             padding: 0.25rem 0.5rem;
             margin: 0 0.1rem;
         }
-        
+
         .photo-thumbnail {
             width: 40px;
             height: 40px;
@@ -115,7 +115,7 @@
             object-fit: cover;
             cursor: pointer;
         }
-        
+
         .photo-modal-img {
             max-width: 100%;
             max-height: 80vh;
@@ -266,9 +266,9 @@
                             <td>{{$d->title}}</td>
                             <td>{{$d->dtenant_id}}</td>
                             <td>{{$d->unit_id}} </td>
-                            <td><span class="badge bg-primary badge-priority">{{$d->priority}}</span></td>
+                             <td><span class="badge bg-primary badge-priority">{{$d->priority}}</span></td>
                             <td><span class="badge status-pending">{{$d->status}}</span></td>
-                            <td> 
+                            <td>
                                 <img src="{{asset('uploadsmr/'.$d->image_url)}}" class="photo-thumbnail" data-bs-toggle="modal" data-bs-target="#photoModal" width="80">
                             </td>
                             <td>
@@ -282,7 +282,7 @@
                                     <i class="fas fa-eye"></i>
                                 </button>
                                 <form action="{{route('mainreq.destroy',$d->id)}}" method="post" style="display:inline">
-                                    @csrf 
+                                    @csrf
                                     @method('delete')
                                     <button type="submit"><i class="fas fa-trash"></i></button>
                                 </form>
@@ -293,9 +293,9 @@
                             <td>no data found</td>
                         </tr>
                         @endforelse
-                     
-                     
-                       
+
+
+
                     </tbody>
                 </table>
             </div>
@@ -343,9 +343,9 @@
             const priorityFilter = document.getElementById('priorityFilter').value;
             const statusFilter = document.getElementById('statusFilter').value;
             const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            
+
             alert(`Filters applied:\nPriority: ${priorityFilter || 'All'}\nStatus: ${statusFilter || 'All'}\nSearch: ${searchInput || 'None'}`);
-            
+
             // In a real application, you would filter the table rows here
         });
     </script>

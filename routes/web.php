@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\PropertyController;
-// use App\Http\controllers\FrontendController as front;
+use App\Http\controllers\FrontendController as front;
 use App\Http\controllers\leaseController;
 use App\Http\controllers\MaintenanceRequestController;
 use App\Http\controllers\UnitController;
@@ -27,9 +27,12 @@ Route::get('/', function () {
 Route::get('dashboard',function() {
     return view('dashboard');
 });
+Route::get('landds',function(){
+return view('landds');
+});
 
 route::resource('property',PropertyController::class);
-// route::get('/',[front::class,'welcome'])->name('welcome');
+route::get('/',[front::class,'welcome'])->name('welcome');
 
 
 route::resource('unit',UnitController::class);

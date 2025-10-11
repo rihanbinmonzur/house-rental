@@ -398,11 +398,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td>no data</td>
-                        </tr>
-                    @endforelse
+
                 </tbody>
             </table>
         </div>
@@ -415,7 +411,7 @@
         <div class="col-md-6 col-lg-4">
             <div class="unit-card">
                 <div class="position-relative">
-                    <div class="unit-image">img src=""</div>
+                    <div class="unit-image"><img src="{{ asset('uploadsun/' . $d->image_url) }}"></div>
                     <span class="status-badge badge-available">Available</span>
                 </div>
                 <div class="p-3">
@@ -445,6 +441,11 @@
             </div>
         </div>
     </div>
+@empty
+    <tr>
+        <td>no data</td>
+    </tr>
+    @endforelse
 
     <!-- Add Unit Modal -->
     <div class="modal fade" id="addUnitModal" tabindex="-1" aria-labelledby="addUnitModalLabel"
@@ -540,7 +541,8 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="repairmen-tab" data-bs-toggle="tab"
-                                data-bs-target="#repairmen" type="button" role="tab">Repair Personnel</button>
+                                data-bs-target="#repairmen" type="button" role="tab">Repair
+                                Personnel</button>
                         </li>
                     </ul>
 
@@ -554,7 +556,8 @@
                                     <div>
                                         <h6>Unit #108 - Plumbing Issue</h6>
                                         <p class="mb-1"><strong>Tenant:</strong> John Smith</p>
-                                        <p class="mb-1"><strong>Issue:</strong> Leaking pipe under kitchen sink</p>
+                                        <p class="mb-1"><strong>Issue:</strong> Leaking pipe under kitchen sink
+                                        </p>
                                         <p class="mb-1"><strong>Reported:</strong> 2 days ago</p>
                                         <span class="badge bg-danger">High Priority</span>
                                     </div>
@@ -610,13 +613,15 @@
                                         placeholder="Please describe the issue in detail..." required></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tenantContact" class="form-label">Tenant Contact Information</label>
+                                    <label for="tenantContact" class="form-label">Tenant Contact
+                                        Information</label>
                                     <input type="text" class="form-control" id="tenantContact"
                                         placeholder="Name and phone number">
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="tenantAccess">
-                                    <label class="form-check-label" for="tenantAccess">Tenant has granted access for
+                                    <label class="form-check-label" for="tenantAccess">Tenant has granted access
+                                        for
                                         repairs</label>
                                 </div>
                             </form>

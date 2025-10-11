@@ -30,6 +30,11 @@ class UnitController extends Controller
     public function store(Request $request)
     {
        $requestdata= $request->all();
+       if($request->hasFile('image_url')){
+    $fileName = time().'_' .$request->image_url->getClientOriginalName();
+    $request->image_url->move(public_path('uploadsun'),$fileName);
+    $requestdata['imahe_url']=$fileName;
+    }
        unit::create($requestdata);
        return redirect()->route('unit.index');
     }
@@ -57,7 +62,7 @@ class UnitController extends Controller
     {
      $unit ->update($request->all());
      return redirect()->route('unit.index');
-        
+
     }
 
     /**
