@@ -27,8 +27,8 @@ Route::get('/', function () {
 Route::get('dashboard',function() {
     return view('dashboard');
 });
-Route::get('landds',function(){
-return view('landds');
+Route::get('lalo',function(){
+return view('lalo');
 });
 
 route::resource('property',PropertyController::class);
