@@ -5,7 +5,9 @@ use App\Http\controllers\PropertyController;
 // use App\Http\controllers\FrontendController as front;
 use App\Http\controllers\leaseController;
 use App\Http\controllers\MaintenanceRequestController;
+use App\Http\controllers\UnitController;
 use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -30,7 +32,7 @@ route::resource('property',PropertyController::class);
 // route::get('/',[front::class,'welcome'])->name('welcome');
 
 
-
+route::resource('unit',UnitController::class);
 route::resource('lease',LeaseController::class);
 route::resource('mainreq',MaintenanceRequestController::class);
 Auth::routes();

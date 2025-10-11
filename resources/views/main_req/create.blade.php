@@ -371,7 +371,7 @@
                                 <div class="col">
                                     <h6 class="mb-1" id="tenantName">Tenant Name</h6>
                                     <p class="mb-1 text-muted" id="tenantEmail">email@example.com</p>
-                                    <p class="mb-0 text-muted" id="tenantPhone">+1 (555) 123-4567</p>
+                                 
                                 </div>
                                 <div class="col-auto">
                                     <span class="badge bg-primary" id="unitBadge">Unit 3B</span>
@@ -390,7 +390,7 @@
                         <div class="mb-3">
                             <label for="issueTitle" class="form-label">Issue Title *</label>
                             <input type="text" class="form-control" id="issueTitle"
-                                placeholder="Brief description of the issue (e.g., Leaking Faucet, Broken AC)" required
+                                placeholder=" of the issue (e.g., Leaking Faucet, Broken AC)" required
                                 maxlength="100" name="title">
                             <div class="character-count" id="titleCount">0/100 characters</div>
                         </div>
@@ -398,7 +398,7 @@
                         <div class="mb-3">
                             <label for="issueDescription" class="form-label">Detailed Description *</label>
                             <textarea class="form-textarea" id="issueDescription"
-                                placeholder="Please provide a detailed description of the issue, including when it started, how it affects you, and any other relevant information..."
+                                placeholder="Please provide a detailedrelevant information..."
                                 required maxlength="1000" name="description"></textarea>
                             <div class="character-count" id="descriptionCount">0/1000 characters</div>
                             <div class="info-text">Be as specific as possible to help us address the issue quickly</div>
@@ -474,8 +474,7 @@
                             <p class="small text-muted">Supported formats: JPG, PNG, GIF (Max: 5MB per file)</p>
                             <input type="file" id="photoUpload" name="image_url" multiple accept="image/*"
                                 style="display: none;">
-                            <input type="file"  name="image_url" multiple accept="image/*"
-                                style="display: none;">
+                          
                         </div>
                                     <div>
                                         <label for="">photo</label>
