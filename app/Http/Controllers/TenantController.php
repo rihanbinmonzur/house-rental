@@ -12,7 +12,8 @@ class TenantController extends Controller
      */
     public function index()
     {
-        //
+        $data = tenant::all();
+        return view('tenant.index',compact('data'));
     }
 
     /**
@@ -20,7 +21,7 @@ class TenantController extends Controller
      */
     public function create()
     {
-        //
+        return view ('tenant.create');
     }
 
     /**
@@ -28,7 +29,9 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestda = $request->all();
+        tenant::create($requestda);
+        return redirect()->route('tenant.index'); 
     }
 
     /**

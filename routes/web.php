@@ -7,6 +7,7 @@ use App\Http\controllers\leaseController;
 use App\Http\controllers\MaintenanceRequestController;
 use App\Http\controllers\UnitController;
 use App\Http\controllers\LandlordController;
+use App\Http\controllers\TenantController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -35,6 +36,7 @@ return view('lalo');
 route::resource('property',PropertyController::class);
 route::get('/',[front::class,'welcome'])->name('welcome');
 
+route::resource('tenant',TenantController::class);
 route::resource('landlord',LandlordController::class);
 route::resource('unit',UnitController::class);
 route::resource('lease',LeaseController::class);
