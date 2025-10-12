@@ -43,7 +43,7 @@
                     <h1 class="h3 text-primary">
                         <i class="fas fa-user-tie me-2"></i>Landlord Management
                     </h1>
-                    <button onclick="window.location.href='{{ route('landlo.create') }}'" class="btn btn-primary">
+                    <button onclick="window.location.href='{{ route('landlord.create') }}'" class="btn btn-primary">
                         <i class="fas fa-plus me-1"></i> Add New Landlord
                     </button>
                 </div>
@@ -104,7 +104,9 @@
                                     <td>1</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="$" alt="Profile" class="profile-img-sm me-3">
+                                            @if ($d->image_url)
+                                            <img src="{{asset('uploadsun/'.$d->image_url)}}" alt="Profile" class="profile-img-sm me-3">
+                                            @endif
                                             <div>
                                                 <strong>{{ $d->name }}</strong>
                                                 <br>
@@ -142,7 +144,7 @@
                                             <button class="btn btn-sm btn-outline-primary" title="View Profile">
                                                 <i class="fas fa-eye"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-outline-warning" title="Edit">
+                                            <button onclick="window.location.href='{{route('landlord.edit',$d->id)}}'" class="btn btn-sm btn-outline-warning" >
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button class="btn btn-sm btn-outline-info" title="Properties">
@@ -151,9 +153,14 @@
                                             <button class="btn btn-sm btn-outline-success" title="Activate">
                                                 <i class="fas fa-check"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                            <form action="{{route('landlord.destroy',$d->id)}}" method="post" style="display:inline">
+                                                @csrf
+                                                @method('delete')
+                                            
+                                            <button class="btn btn-sm btn-outline-danger" title="Delete" type="submit">
                                                 <i class="fas fa-trash"></i>
                                             </button>
+                                        </form>
                                         </div>
                                     </td>
                                 </tr>

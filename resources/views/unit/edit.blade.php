@@ -138,7 +138,7 @@
 
                     <form method="POST" action="{{ route('unit.update', $unit->id) }}" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
+                        @method('patch')
                         
                         <!-- Basic Information Section -->
                         <div class="form-section">

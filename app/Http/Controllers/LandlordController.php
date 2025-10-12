@@ -31,7 +31,7 @@ class LandlordController extends Controller
     {
        $requestdata = $request->all();
        landlord::create($requestdata);
-       return redirect()->route('landlo.index');
+       return redirect()->route('landlord.index');
     }
 
     /**
@@ -47,7 +47,7 @@ class LandlordController extends Controller
      */
     public function edit(Landlord $landlord)
     {
-        //
+       return view ('land_lord.edit',compact('landlord'));
     }
 
     /**
@@ -55,7 +55,8 @@ class LandlordController extends Controller
      */
     public function update(Request $request, Landlord $landlord)
     {
-        //
+        $landlord->update($request->all());
+        return redirect()->route('landlord.index');
     }
 
     /**
@@ -63,6 +64,7 @@ class LandlordController extends Controller
      */
     public function destroy(Landlord $landlord)
     {
-        //
+        $landlord->delete();
+        return redirect()->route('landlord.index');
     }
 }
