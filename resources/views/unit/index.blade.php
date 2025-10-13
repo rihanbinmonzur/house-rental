@@ -362,6 +362,7 @@
                             <td>
                                 @if ($d->image_url)
                                 <img src="{{asset('uploadsun/'.$d->image_url)}}" alt="Unit 301" class="unit-photo" width="80">
+                                @endif
                             </td>
                             <td>{{ $d->id }}</td>
                             <td>{{ $d->property_id }}</td>

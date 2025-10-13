@@ -1,10 +1,9 @@
-
-@extends('layouts.app_property')
+@extends('layouts.laloapp')
 @section('pageTitle',"index")
-
+@section('content')
 
    <!-- Main Content -->
-    <div class="main-content" id="mainContent">
+   <div class="main-content" id="mainContent">
         <!-- Header -->
         <div class="row mb-4">
             <div class="col">
@@ -267,138 +266,63 @@
                             <table class="table table-hover mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Property</th>
-                                        <th>name</th>
-                                        <th>property type</th>
-                                        <th>address</th>
-                                        <th>total_units</th>
-                                        <th>base rent</th>
-                                        <th>description</th>
-                                        <th>property feature</th>
-
+                                        <th>#</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Property Type</th>
+                                        <th>Address</th>
+                                        <th>Total Units</th>
+                                        <th>Base Rent</th>
+                                        <th>Description</th>
+                                        <th>Property Feature</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($data as $i=>$d)
                                     <tr>
+                                        <td>{{$i+1}}</td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=100&h=60&fit=crop" 
-                                                     class="rounded me-3" width="40" height="40">
-                                                <div>
-                                                    <strong>Sunset Villa</strong>
-                                                    <div class="text-muted small">123 Sunset Blvd</div>
-                                                </div>
-                                            </div>
+                                            @if ($d->image_url)
+                                                <img src="{{asset('uploads/'.$d->image_url)}}" alt="Property Image" width="80" height="60" class="rounded">
+                                            @else
+                                                <img src="https://via.placeholder.com/80x60" alt="No Image" width="80" height="60" class="rounded">
+                                            @endif
                                         </td>
-                                        <td>
-                                            <div>8 Units</div>
-                                            <div class="progress progress-bar-custom mt-1">
-                                                <div class="progress-bar bg-success" style="width: 87%"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">87%</strong>
-                                            <div class="text-muted small">7/8 occupied</div>
-                                        </td>
-                                        <td>$1,450</td>
-                                        <td>$10,150</td>
-                                        <td><span class="status-badge bg-success">Published</span></td>
+                                        <td>{{$d->name}}</td>
+                                        <td>{{$d->property_type}}</td>
+                                        <td>{{$d->address}}</td>
+                                        <td>{{$d->total_units}}</td>
+                                        <td>${{$d->base_rent}}</td>
+                                        <td>{{Str::limit($d->description, 50)}}</td>
+                                        <td>{{$d->property_feature}}</td>
                                         <td>
                                             <div class="property-actions">
-                                                <button class="btn btn-sm btn-outline-primary">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-info">
-                                                    <i class="fas fa-chart-bar"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=100&h=60&fit=crop" 
-                                                     class="rounded me-3" width="40" height="40">
-                                                <div>
-                                                    <strong>Garden Apartments</strong>
-                                                    <div class="text-muted small">456 Garden St</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>12 Units</div>
-                                            <div class="progress progress-bar-custom mt-1">
-                                                <div class="progress-bar bg-success" style="width: 92%"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">92%</strong>
-                                            <div class="text-muted small">11/12 occupied</div>
-                                        </td>
-                                        <td>$1,200</td>
-                                        <td>$13,200</td>
-                                        <td><span class="status-badge bg-success">Published</span></td>
-                                        <td>
-                                            <div class="property-actions">
-                                                <button class="btn btn-sm btn-outline-primary">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-info">
-                                                    <i class="fas fa-chart-bar"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                   @forelse($data as $i=>$d)
-                                   <tr>
-                                    <td>{{$i++}}</td>
-                                    <td>@if ($d->image_url)
-                                        <img src="{{asset('uploads/'.$d->image_url)}}" alt="" width="80">
-                                             @endif
-                                    </td>
-                                    <td>{{$d->name}}</td>
-                                    <td>{{$d->property_type}}</td>
-                                    <td>{{$d->address}}</td>
-                                    <td>{{$d->total_units}}</td>
-                                    <td>{{$d->base_rent}}</td>
-                                    <td>{{$d->property_feature}}</td>
-                                    <td><div class="property-actions">
                                                 <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='{{route('property.show',$d->id)}}'" >
                                                     <i class="fas fa-eye"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-outline-secondary" onclick=window.location.href="{{route('property.edit',$d->id)}}" >
-                                                    <i class="fas fa-edit"  ></i>
+                                                <button class="btn btn-sm btn-outline-secondary" onclick="window.location.href='{{route('property.edit',$d->id)}}'" >
+                                                    <i class="fas fa-edit"></i>
                                                 </button>
-
-                                                <form action="{{route('property.destroy',$d->id)}}" method="POST" style="display:inline;" >
+                                                <form action="{{route('property.destroy',$d->id)}}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this property?')">
                                                     @csrf 
                                                     @method('delete')
-
-                                                <button class="btn btn-sm btn-outline-info">
-                                                    <i class="fas fa-trash"></i>
-                                                </button></td>
-                                            </form>
-                                   </tr>
-
-                                        @empty
-                                        <tr>
-                                            <td> no data found</td>
-                                        </tr>
-                                        @endforelse
-
-                                   
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="10" class="text-center">No data found</td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                   
                 </div>
             </div>
 
@@ -535,58 +459,80 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form id="propertyForm">
+                <form action="{{ route('property.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="propertyName" class="form-label">Property Name *</label>
-                                    <input type="text" class="form-control" id="propertyName" placeholder="e.g., Sunset Villa" required>
+                                    <input type="text" class="form-control" id="propertyName" name="name" placeholder="e.g., Sunset Villa" required>
+                                    @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="propertyType" class="form-label">Property Type</label>
-                                    <select class="form-select" id="propertyType">
+                                    <select class="form-select" id="propertyType" name="property_type">
                                         <option value="apartment">Apartment Building</option>
                                         <option value="house">Single Family Home</option>
                                         <option value="townhouse">Townhouse</option>
                                         <option value="condo">Condominium</option>
                                         <option value="commercial">Commercial</option>
                                     </select>
+                                    @error('property_type')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="propertyAddress" class="form-label">Address *</label>
-                            <textarea class="form-control" id="propertyAddress" rows="2" placeholder="Full property address" required></textarea>
+                            <textarea class="form-control" id="propertyAddress" name="address" rows="2" placeholder="Full property address" required></textarea>
+                            @error('address')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="totalUnits" class="form-label">Total Units</label>
-                                    <input type="number" class="form-control" id="totalUnits" value="1" min="1">
+                                    <input type="number" class="form-control" id="totalUnits" name="total_units" value="1" min="1">
+                                    @error('total_units')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="baseRent" class="form-label">Base Rent ($)</label>
-                                    <input type="number" class="form-control" id="baseRent" placeholder="0.00" step="0.01">
+                                    <input type="number" class="form-control" id="baseRent" name="base_rent" placeholder="0.00" step="0.01">
+                                    @error('base_rent')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="securityDeposit" class="form-label">Security Deposit ($)</label>
-                                    <input type="number" class="form-control" id="securityDeposit" placeholder="0.00" step="0.01">
+                                    <input type="number" class="form-control" id="securityDeposit" name="security_deposit" placeholder="0.00" step="0.01">
+                                    @error('security_deposit')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="propertyDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="propertyDescription" rows="3" placeholder="Describe the property features and amenities..."></textarea>
+                            <textarea class="form-control" id="propertyDescription" name="description" rows="3" placeholder="Describe the property features and amenities..."></textarea>
+                            @error('description')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
@@ -594,29 +540,29 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="parking">
+                                        <input class="form-check-input" type="checkbox" id="parking" name="features[]" value="parking">
                                         <label class="form-check-label" for="parking">Parking</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gym">
+                                        <input class="form-check-input" type="checkbox" id="gym" name="features[]" value="gym">
                                         <label class="form-check-label" for="gym">Gym</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="pool">
+                                        <input class="form-check-input" type="checkbox" id="pool" name="features[]" value="pool">
                                         <label class="form-check-label" for="pool">Swimming Pool</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="laundry">
+                                        <input class="form-check-input" type="checkbox" id="laundry" name="features[]" value="laundry">
                                         <label class="form-check-label" for="laundry">Laundry</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="pets">
+                                        <input class="form-check-input" type="checkbox" id="pets" name="features[]" value="pets">
                                         <label class="form-check-label" for="pets">Pet Friendly</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="security">
+                                        <input class="form-check-input" type="checkbox" id="security" name="features[]" value="security">
                                         <label class="form-check-label" for="security">Security</label>
                                     </div>
                                 </div>
@@ -625,16 +571,19 @@
 
                         <div class="mb-3">
                             <label for="propertyPhotos" class="form-label">Upload Photos</label>
-                            <input type="file" class="form-control" id="propertyPhotos" multiple accept="image/*">
+                            <input type="file" class="form-control" id="propertyPhotos" name="image_url" accept="image/*">
+                            @error('image_url')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">
-                        <i class="fas fa-save me-1"></i>Save Property
-                    </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Save Property
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -649,25 +598,31 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form id="unitForm">
+                <form action="{{ route('unit.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="propertySelect" class="form-label">Property *</label>
-                                    <select class="form-select" id="propertySelect" required>
+                                    <select class="form-select" id="propertySelect" name="property_id" required>
                                         <option value="" selected disabled>Select a property</option>
-                                        <option value="sunset-villa">Sunset Villa</option>
-                                        <option value="garden-apartments">Garden Apartments</option>
-                                        <option value="city-view-loft">City View Loft</option>
-                                        <option value="lakeside-residence">Lakeside Residence</option>
+                                        @foreach($data as $property)
+                                        <option value="{{ $property->id }}">{{ $property->name }}</option>
+                                        @endforeach
                                     </select>
+                                    @error('property_id')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="unitNumber" class="form-label">Unit Number *</label>
-                                    <input type="text" class="form-control" id="unitNumber" placeholder="e.g., 101, A1, etc." required>
+                                    <input type="text" class="form-control" id="unitNumber" name="unit_number" placeholder="e.g., 101, A1, etc." required>
+                                    @error('unit_number')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -676,31 +631,40 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="unitType" class="form-label">Unit Type</label>
-                                    <select class="form-select" id="unitType">
+                                    <select class="form-select" id="unitType" name="unit_type">
                                         <option value="studio">Studio</option>
                                         <option value="1-bedroom">1 Bedroom</option>
                                         <option value="2-bedroom" selected>2 Bedroom</option>
                                         <option value="3-bedroom">3 Bedroom</option>
                                         <option value="4-bedroom">4 Bedroom</option>
                                     </select>
+                                    @error('unit_type')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="bathrooms" class="form-label">Bathrooms</label>
-                                    <select class="form-select" id="bathrooms">
+                                    <select class="form-select" id="bathrooms" name="bathrooms">
                                         <option value="1">1 Bathroom</option>
                                         <option value="1.5">1.5 Bathrooms</option>
                                         <option value="2" selected>2 Bathrooms</option>
                                         <option value="2.5">2.5 Bathrooms</option>
                                         <option value="3">3+ Bathrooms</option>
                                     </select>
+                                    @error('bathrooms')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="squareFootage" class="form-label">Square Footage</label>
-                                    <input type="number" class="form-control" id="squareFootage" placeholder="e.g., 850">
+                                    <input type="number" class="form-control" id="squareFootage" name="square_footage" placeholder="e.g., 850">
+                                    @error('square_footage')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -709,20 +673,29 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="monthlyRent" class="form-label">Monthly Rent ($) *</label>
-                                    <input type="number" class="form-control" id="monthlyRent" placeholder="0.00" step="0.01" required>
+                                    <input type="number" class="form-control" id="monthlyRent" name="monthly_rent" placeholder="0.00" step="0.01" required>
+                                    @error('monthly_rent')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="securityDepositUnit" class="form-label">Security Deposit ($)</label>
-                                    <input type="number" class="form-control" id="securityDepositUnit" placeholder="0.00" step="0.01">
+                                    <input type="number" class="form-control" id="securityDepositUnit" name="security_deposit" placeholder="0.00" step="0.01">
+                                    @error('security_deposit')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="unitDescription" class="form-label">Unit Description</label>
-                            <textarea class="form-control" id="unitDescription" rows="3" placeholder="Describe the unit features, condition, and any special details..."></textarea>
+                            <textarea class="form-control" id="unitDescription" name="description" rows="3" placeholder="Describe the unit features, condition, and any special details..."></textarea>
+                            @error('description')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
@@ -730,29 +703,29 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="unitParking">
+                                        <input class="form-check-input" type="checkbox" id="unitParking" name="features[]" value="parking">
                                         <label class="form-check-label" for="unitParking">Parking Space</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="unitBalcony">
+                                        <input class="form-check-input" type="checkbox" id="unitBalcony" name="features[]" value="balcony">
                                         <label class="form-check-label" for="unitBalcony">Balcony/Patio</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="unitFireplace">
+                                        <input class="form-check-input" type="checkbox" id="unitFireplace" name="features[]" value="fireplace">
                                         <label class="form-check-label" for="unitFireplace">Fireplace</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="unitWasherDryer">
+                                        <input class="form-check-input" type="checkbox" id="unitWasherDryer" name="features[]" value="washer_dryer">
                                         <label class="form-check-label" for="unitWasherDryer">In-Unit Washer/Dryer</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="unitCentralAC">
+                                        <input class="form-check-input" type="checkbox" id="unitCentralAC" name="features[]" value="central_ac">
                                         <label class="form-check-label" for="unitCentralAC">Central A/C</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="unitHardwood">
+                                        <input class="form-check-input" type="checkbox" id="unitHardwood" name="features[]" value="hardwood">
                                         <label class="form-check-label" for="unitHardwood">Hardwood Floors</label>
                                     </div>
                                 </div>
@@ -761,21 +734,153 @@
 
                         <div class="mb-3">
                             <label for="unitPhotos" class="form-label">Upload Unit Photos</label>
-                            <input type="file" class="form-control" id="unitPhotos" multiple accept="image/*">
+                            <input type="file" class="form-control" id="unitPhotos" name="images" multiple accept="image/*">
+                            @error('images')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="saveUnitBtn">
-                        <i class="fas fa-save me-1"></i>Save Unit
-                    </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="saveUnitBtn">
+                            <i class="fas fa-save me-1"></i>Save Unit
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-   
+    <script>
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                datasets: [{
+                    label: 'Monthly Revenue',
+                    data: [7200, 8100, 7800, 8300, 8600, 8540],
+                    borderColor: '#4361ee',
+                    backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#4361ee',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: {
+                            drawBorder: false
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Occupancy Chart
+        const occupancyCtx = document.getElementById('occupancyChart').getContext('2d');
+        const occupancyChart = new Chart(occupancyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                datasets: [{
+                    label: 'Occupancy Rate',
+                    data: [82, 85, 83, 87, 88, 85],
+                    backgroundColor: '#4895ef',
+                    borderWidth: 0,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            drawBorder: false
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Filter Toggle
+        document.getElementById('filterToggle').addEventListener('click', function() {
+            const filterContent = document.getElementById('filterContent');
+            const icon = this.querySelector('i');
+            
+            if (filterContent.style.display === 'none') {
+                filterContent.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                this.innerHTML = '<i class="fas fa-chevron-up me-1"></i>Hide Filters';
+            } else {
+                filterContent.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                this.innerHTML = '<i class="fas fa-chevron-down me-1"></i>Show Filters';
+            }
+        });
+
+        // Reset Filters
+        document.getElementById('resetFilters').addEventListener('click', function() {
+            document.getElementById('searchKeyword').value = '';
+            document.getElementById('propertyTypeFilter').value = '';
+            document.getElementById('occupancyStatus').value = '';
+            document.getElementById('locationFilter').value = '';
+            document.getElementById('minUnits').value = '';
+            document.getElementById('maxUnits').value = '';
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            document.getElementById('dateFrom').value = '';
+            document.getElementById('dateTo').value = '';
+            
+            // Uncheck all feature checkboxes
+            document.querySelectorAll('.filter-group input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        });
+    </script>
+@endsection
