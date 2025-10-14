@@ -33,11 +33,14 @@ class UnitController extends Controller
        if($request->hasFile('image_url')){
     $fileName = time().'_' .$request->image_url->getClientOriginalName();
     $request->image_url->move(public_path('uploadsun'),$fileName);
-    $requestdata['imahe_url']=$fileName;
+    $requestdata['image_url']=$fileName;
     }
+
+    $requestdata['features'] = json_encode($request->features ?? []);
        unit::create($requestdata);
        return redirect()->route('unit.index');
     }
+   
 
     /**
      * Display the specified resource.

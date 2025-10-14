@@ -145,7 +145,7 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -188,7 +188,7 @@
                     </a>
                     <ul class="submenu">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('properties') ? 'active' : '' }}" href="{{ route('property.index') }}">
+                            <a class="nav-link {{ request()->is('properties') ? 'active' : '' }}" href="{{ route('unit.index') }}">
                                 <i class="fas fa-list"></i>
                                 <span>All unit</span>
                             </a>
