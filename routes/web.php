@@ -9,6 +9,7 @@ use App\Http\controllers\UnitController;
 use App\Http\controllers\LandlordController;
 use App\Http\controllers\TenantController;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\begimail;
 
 
 
@@ -33,9 +34,18 @@ Route::get('lalo',function(){
 return view('lalo');
 });
 
-route::resource('property',PropertyController::class);
-route::get('/',[front::class,'welcome'])->name('welcome');
 
+route::get('/',[front::class,'welcome'])->name('welcome');
+route::get('test', function(){
+        $namee = "funny co";
+        $name = "toto";
+        Mail::to ('rihanidbclass@gmail.com')->send(new begimail($name, $namee));
+        return "mail will sent successfully";
+ 
+});
+
+
+route::resource('property',PropertyController::class);
 route::resource('tenant',TenantController::class);
 route::resource('landlord',LandlordController::class);
 route::resource('unit',UnitController::class);
