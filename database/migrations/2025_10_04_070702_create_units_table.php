@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('bedrooms')->nullable();
             $table->integer('bathrooms')->nullable();
             $table->integer('rent_amount')->nullable();
+            $table->string('features')->nullable();
             $table->enum('status', ['available', 'occupied', 'maintenance'])->default('available');
             
              $table->string('image_url')->nullable();

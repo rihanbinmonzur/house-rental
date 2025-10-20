@@ -6,7 +6,10 @@ use App\Http\controllers\FrontendController as front;
 use App\Http\controllers\leaseController;
 use App\Http\controllers\MaintenanceRequestController;
 use App\Http\controllers\UnitController;
+use App\Http\controllers\LandlordController;
+use App\Http\controllers\TenantController;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\begimail;
 
 
 
@@ -21,16 +24,31 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::get('dashboard',function() {
     return view('dashboard');
+})->name('dashboard');
+Route::get('lalo',function(){
+return view('lalo');
 });
+
+
+route::get('/',[front::class,'welcome'])->name('welcome');
+route::get('test', function(){
+        $namee = "funny co";
+        $name = "toto";
+        Mail::to ('rihanidbclass@gmail.com')->send(new begimail($name, $namee));
+        return "mail will sent successfully";
+
+});
+
 
 route::get('/',[front::class,'welcome'])->name('welcome');
 route::resource('property',PropertyController::class);
-// route::get('/',[front::class,'welcome'])->name('welcome');
-
-
+route::resource('tenant',TenantController::class);
+route::resource('landlord',LandlordController::class);
 route::resource('unit',UnitController::class);
 route::resource('lease',LeaseController::class);
 route::resource('mainreq',MaintenanceRequestController::class);

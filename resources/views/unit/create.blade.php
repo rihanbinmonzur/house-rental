@@ -137,6 +137,7 @@
                     </div>
 
                     <form method="post" action="{{route('unit.store')}}" enctype="multipart/form-data">
+                        @csrf
                         <!-- Basic Information Section -->
                         <div class="form-section">
                             <h5><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
@@ -181,13 +182,10 @@
                                     <label for="bathrooms" class="form-label">Bathrooms</label>
                                     <select class="form-select" id="bathrooms" name="bathrooms">
                                         <option value="1" selected>1</option>
-                                        <option value="1.5">1.5</option>
+                                     
                                         <option value="2">2</option>
-                                        <option value="2.5">2.5</option>
-                                        <option value="3">3</option>
-                                        <option value="3.5">3.5</option>
-                                        <option value="4">4+</option>
-                                    </select>
+                                     
+    </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="rent_amount" class="form-label required-field">Rent Amount ($)</label>
@@ -237,7 +235,7 @@
                                             PNG, JPG, GIF up to 5MB
                                         </div>
                                     </label>
-                                    <input type="file" class="file-input" id="image_file" name="image_file" accept="image/*">
+                                    <input type="file" class="file-input" id="image_file" name="image_url" accept="image/*">
                                     <div id="fileName" class="file-name"></div>
                                 </div>
                                 <div id="imagePreview" class="text-center mt-3" style="display: none;">
@@ -424,30 +422,7 @@
         document.getElementById('custom_features').addEventListener('input', updateFeatureTags);
         
         // Form submission
-        document.getElementById('unitForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(this);
-            
-            // Add custom features to form data
-            const customFeatures = document.getElementById('custom_features').value;
-            if (customFeatures) {
-                const features = customFeatures.split(',').map(f => f.trim()).filter(f => f);
-                features.forEach(feature => {
-                    formData.append('custom_features[]', feature);
-                });
-            }
-            
-            // In a real application, you would send this data to a server
-            console.log('Form submitted with data:');
-            for (let [key, value] of formData.entries()) {
-                console.log(key + ': ' + value);
-            }
-            
-            // Show success message
-            alert('Unit information saved successfully!');
-        });
+     
 
         // Reset form
         document.getElementById('resetBtn').addEventListener('click', function() {

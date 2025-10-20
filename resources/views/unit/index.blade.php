@@ -1,3 +1,7 @@
+ @extends('layouts.laloapp')
+@section('title',"unit index")
+@section ('content') 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -340,6 +344,7 @@
     <div class="table-container">
         <h4 class="mb-3">All Units</h4>
         <div class="table-responsive">
+           
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -351,17 +356,19 @@
                         <th>Size</th>
                         <th>Bed/Bath</th>
                         <th>Rent Amount</th>
+                        <th>Features</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Example Unit Row -->
-                    @forelse($data as $i=> $d)
+                     @forelse($data as $i=> $d)
                         <tr>
                             <td>
-
-                                <img src="{{ $d->id }}" alt="Unit 301" class="unit-photo">
+                                @if ($d->image_url)
+                                <img src="{{asset('uploadsun/'.$d->image_url)}}" alt="Unit 301" class="unit-photo" width="80">
+                                @endif
                             </td>
                             <td>{{ $d->id }}</td>
                             <td>{{ $d->property_id }}</td>
@@ -371,6 +378,7 @@
                             <td>{{ $d->bedrooms }}</td>
                             <td>{{ $d->bathrooms }}</td>
                             <td>{{ $d->rent_amount }}</td>
+                            <td>{{$d->features}}</td>
                             <td><span class="badge bg-info">{{ $d->status }}</span></td>
                             <td>
                                 <div class="table-actions">
@@ -383,51 +391,53 @@
                                     </button>
                                     <button class="btn btn-sm btn-outline-warning" title="Maintenance"
                                         data-bs-toggle="modal" data-bs-target="#maintenanceModal">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="fas fa-tools"></i>
 
                                         <form action="{{ route('unit.destroy', $d->id) }}" method="post">
                                             @csrf
                                             @method('delete')
 
-                                            <button type="submit" class="btn btn-primary" title="Maintenance"
-                                                data-bs-toggle="modal" data-bs-target="#maintenanceModal">
-                                                <i class="fas fa-tools"></i>
+                                            <button type="submit" class="btn btn-primary" title="delete"
+                                                >
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
 
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td>no data</td>
-                        </tr>
-                    @endforelse
+   @empty
+    <tr>
+        <td>no data</td>
+    </tr>
+    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 
+ 
+<!-- Example Unit Card -->
     <!-- Units Grid View -->
-    <h4 class="mb-3">Rental Units</h4>
+    <h4 class="mb-3">Rental Units</h4> 
     <div class="row">
-        <!-- Example Unit Card -->
+         @forelse($data as $i=> $d)
         <div class="col-md-6 col-lg-4">
             <div class="unit-card">
                 <div class="position-relative">
-                    <div class="unit-image">img src=""</div>
-                    <span class="status-badge badge-available">Available</span>
+                    <div class="unit-image"><img src="{{ asset('uploadsun/' . $d->image_url) }}"></div>
+                    <span class="status-badge badge-available">{{$d->status}}</span>
                 </div>
                 <div class="p-3">
                     <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h5 class="mb-0">Unit #301</h5>
-                        <div class="rent-amount">$1,850</div>
+                        <h5 class="mb-0">{{$d->unit}} #301</h5>
+                        <div class="rent-amount">${{$d->rent_amount}}</div>
                     </div>
-                    <p class="text-muted mb-2">Property 101 • Floor 3 • 850 sq ft</p>
+                    <p class="text-muted mb-2">Property {{$d->property_id}}</p>
                     <div class="d-flex justify-content-between mb-3">
-                        <span><i class="fas fa-bed me-1"></i> 2 Bed</span>
-                        <span><i class="fas fa-bath me-1"></i> 1 Bath</span>
-                        <span><i class="fas fa-layer-group me-1"></i> Floor 3</span>
+                        <span><i class="fas fa-bed me-1"></i> {{$d->bedrooms}}</span>
+                        <span><i class="fas fa-bath me-1"></i> {{$d->bathrroms}}</span>
+                        <span><i class="fas fa-layer-group me-1"></i> {{$d->floor}}</span>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-outline-primary btn-sm">
@@ -444,10 +454,15 @@
                 </div>
             </div>
         </div>
-    </div>
+        @empty
+        <tr>
+            <td>no data</td>
+        </tr>
+        @endforelse
+    </div> 
 
     <!-- Add Unit Modal -->
-    <div class="modal fade" id="addUnitModal" tabindex="-1" aria-labelledby="addUnitModalLabel"
+     <div class="modal fade" id="addUnitModal" tabindex="-1" aria-labelledby="addUnitModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -515,10 +530,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 
     <!-- Maintenance Modal -->
-    <div class="modal fade" id="maintenanceModal" tabindex="-1" aria-labelledby="maintenanceModalLabel"
+  <div class="modal fade" id="maintenanceModal" tabindex="-1" aria-labelledby="maintenanceModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -540,13 +555,14 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="repairmen-tab" data-bs-toggle="tab"
-                                data-bs-target="#repairmen" type="button" role="tab">Repair Personnel</button>
+                                data-bs-target="#repairmen" type="button" role="tab">Repair
+                                Personnel</button>
                         </li>
                     </ul>
 
-                    <div class="tab-content p-3" id="maintenanceTabsContent">
+                    <div class="tab-content p-3" id="maintenanceTabsContent"> 
                         <!-- Maintenance Requests Tab -->
-                        <div class="tab-pane fade show active" id="requests" role="tabpanel">
+                      <div class="tab-pane fade show active" id="requests" role="tabpanel">
                             <h5>Active Maintenance Requests</h5>
 
                             <div class="maintenance-request-card maintenance-priority-high">
@@ -554,7 +570,8 @@
                                     <div>
                                         <h6>Unit #108 - Plumbing Issue</h6>
                                         <p class="mb-1"><strong>Tenant:</strong> John Smith</p>
-                                        <p class="mb-1"><strong>Issue:</strong> Leaking pipe under kitchen sink</p>
+                                        <p class="mb-1"><strong>Issue:</strong> Leaking pipe under kitchen sink
+                                        </p>
                                         <p class="mb-1"><strong>Reported:</strong> 2 days ago</p>
                                         <span class="badge bg-danger">High Priority</span>
                                     </div>
@@ -568,9 +585,9 @@
                                 </div>
                             </div>
                         </div>
-
+    
                         <!-- New Request Tab -->
-                        <div class="tab-pane fade" id="new-request" role="tabpanel">
+                      <div class="tab-pane fade" id="new-request" role="tabpanel">
                             <h5>Create New Maintenance Request</h5>
                             <form id="maintenanceRequestForm">
                                 <div class="row">
@@ -610,13 +627,15 @@
                                         placeholder="Please describe the issue in detail..." required></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tenantContact" class="form-label">Tenant Contact Information</label>
+                                    <label for="tenantContact" class="form-label">Tenant Contact
+                                        Information</label>
                                     <input type="text" class="form-control" id="tenantContact"
                                         placeholder="Name and phone number">
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="tenantAccess">
-                                    <label class="form-check-label" for="tenantAccess">Tenant has granted access for
+                                    <label class="form-check-label" for="tenantAccess">Tenant has granted access
+                                        for
                                         repairs</label>
                                 </div>
                             </form>
@@ -795,3 +814,4 @@
 </body>
 
 </html>
+ @endsection 

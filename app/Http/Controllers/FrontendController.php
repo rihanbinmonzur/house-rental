@@ -10,4 +10,5 @@ class FrontendController extends Controller
     $properties =  \App\Models\Property::all();
     return view ('welcome',compact('properties'));
    }
+   
 }
