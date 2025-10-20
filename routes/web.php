@@ -30,19 +30,6 @@ Route::get('/', function () {
 Route::get('dashboard',function() {
     return view('dashboard');
 })->name('dashboard');
-Route::get('lalo',function(){
-return view('lalo');
-});
-
-
-route::get('/',[front::class,'welcome'])->name('welcome');
-route::get('test', function(){
-        $namee = "funny co";
-        $name = "toto";
-        Mail::to ('rihanidbclass@gmail.com')->send(new begimail($name, $namee));
-        return "mail will sent successfully";
-
-});
 
 
 route::get('/',[front::class,'welcome'])->name('welcome');
