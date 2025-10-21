@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UnitController;
+use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\UserAuthController;
 
 /*
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('units', UnitController::class)->middleware('auth:sanctum');
+Route::apiResource('properties', PropertyController::class)->middleware('auth:sanctum');

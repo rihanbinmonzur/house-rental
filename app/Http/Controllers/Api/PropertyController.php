@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\unit;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
-class UnitController extends Controller
+class PropertyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+    * Display a listing of the resource.
     */
     public function index()
     {
-        $data = unit::with('property')->get();
+        $data = Property::get();
         return response()->json($data, 200);
     }
 
